@@ -36,8 +36,8 @@ export default function LoginForm() {
 
       setToken(data.jwt); // JWT token để lưu vào localStorage, cookie, hoặc context
       router.push("/");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError((err as Error).message);
     }
   };
   return (
