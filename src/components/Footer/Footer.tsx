@@ -8,7 +8,9 @@ import {
   Facebook,
   Linkedin,
   Globe,
+  Link2,
 } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   const footerLinks = {
@@ -78,12 +80,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-400 hover:text-amber-400 transition-colors duration-200 text-sm"
                   >
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -95,12 +97,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-400 hover:text-amber-400 transition-colors duration-200 text-sm"
                   >
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -112,12 +114,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.resources.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-400 hover:text-amber-400 transition-colors duration-200 text-sm"
                   >
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -131,24 +133,24 @@ const Footer = () => {
             <div className="flex items-center space-x-6">
               <span className="text-gray-400 text-sm">Follow us:</span>
               <div className="flex items-center space-x-4">
-                <a
+                <Link
                   href="#"
                   className="bg-gray-800 hover:bg-blue-600 p-2 rounded-lg transition-colors duration-200"
                 >
                   <Facebook className="h-5 w-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="bg-gray-800 hover:bg-blue-700 p-2 rounded-lg transition-colors duration-200"
                 >
                   <Linkedin className="h-5 w-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="bg-gray-800 hover:bg-gray-700 p-2 rounded-lg transition-colors duration-200"
                 >
                   <Globe className="h-5 w-5" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -176,24 +178,24 @@ const Footer = () => {
               © 2024 Saigon Centre. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <a
+              <Link
                 href="#"
                 className="hover:text-amber-400 transition-colors duration-200"
               >
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="hover:text-amber-400 transition-colors duration-200"
               >
                 Terms of Service
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="hover:text-amber-400 transition-colors duration-200"
               >
                 Site Map
-              </a>
+              </Link>
             </div>
           </div>
         </div>

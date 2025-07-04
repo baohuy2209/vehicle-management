@@ -1,5 +1,6 @@
 "use client";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link"; 
 type Props = {
   session: any;
 };
@@ -48,50 +49,50 @@ export default function Header() {
             </div>
             {!token ? (
               <div className="hidden sm:flex sm:items-center">
-                <a
+                <Link
                   href="/auth-page/sign-in"
                   className="text-gray-800 text-sm font-semibold hover:text-blue-600 mr-4"
                 >
                   Sign in
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/auth-page/sign-uo"
                   className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             ) : (
-              <a
+              <Link
                 href="#"
                 className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
               >
                 Logout
-              </a>
+              </Link>
             )}
             {/* Responsive */}
             {!token ? (
               <div className="lg:hidden sm:flex sm:items-center">
-                <a
+                <Link
                   href="/auth-page/sign-in"
                   className="text-gray-800 text-sm font-semibold hover:text--600 mr-4"
                 >
                   Sign in
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/auth-page/sign-up"
                   className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             ) : (
-              <a
+              <Link
                 href="#"
                 className="lg:hidden text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
               >
                 Logout
-              </a>
+              </Link>
             )}
 
             <div className="sm:hidden cursor-pointer">
@@ -110,43 +111,43 @@ export default function Header() {
 
           <div className="block sm:hidden bg-white border-t-2 py-2">
             <div className="flex flex-col">
-              <a
+              <Link
                 href="/"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mb-1"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/about"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mb-1"
               >
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/registration-parking"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mb-1"
               >
                 Parking Registration
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/tracking-status"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mb-1"
               >
                 Tracking
-              </a>
+              </Link>
               <div className="flex justify-between items-center border-t-2 pt-2">
-                <a
+                <Link
                   href="/auth-page/sign-in"
                   className="text-gray-800 text-sm font-semibold hover:text-blue-600 mr-4"
                 >
                   Sign in
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/auth-page/sign-up"
                   className="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-blue-600 hover:border-blue-600"
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             </div>
           </div>
