@@ -8,7 +8,6 @@ import {
   Facebook,
   Linkedin,
   Globe,
-  Link2,
 } from "lucide-react";
 import Link from "next/link";
 

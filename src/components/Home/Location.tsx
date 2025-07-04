@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MapPin, Train, Plane, Car, Clock, Globe } from "lucide-react";
+import { MapPin, Train, Plane, Car, Globe } from "lucide-react";
 
 const Location = () => {
   const locationHighlights = [

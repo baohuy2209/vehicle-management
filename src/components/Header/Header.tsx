@@ -1,9 +1,7 @@
 "use client";
 import { useAuth } from "@/context/AuthContext";
-import Link from "next/link"; 
-type Props = {
-  session: any;
-};
+import Link from "next/link";
+
 import Image from "next/image";
 export default function Header() {
   const { token } = useAuth();
