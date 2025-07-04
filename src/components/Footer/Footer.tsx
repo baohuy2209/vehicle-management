@@ -49,7 +49,7 @@ const Footer = () => {
               <span className="text-xl font-bold">Saigon Centre</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Vietnam's premier business destination in the heart of Ho Chi Minh
+              Vietnam&apos;s premier business destination in the heart of Ho Chi Minh
               City. Setting the standard for commercial excellence since
               establishment.
             </p>

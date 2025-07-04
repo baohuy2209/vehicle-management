@@ -1,13 +1,11 @@
-"use client"
+"use client";
 import React from "react";
 import Footer from "../Footer/Footer";
 
-type Props = {};
-
-export default function RegistrationParking({}: Props) {
+export default function RegistrationParking() {
   const [name, setName] = React.useState("");
-  const [phone, setPhone] = React.useState(""); 
-  const [email, setEmail] = React.useState("");  
+  // const [phone, setPhone] = React.useState("");
+  const [email, setEmail] = React.useState("");
   return (
     <>
       <section className=" py-1 bg-blueGray-50">
@@ -161,7 +159,6 @@ export default function RegistrationParking({}: Props) {
                     </div>
                   </div>
                 </div>
-                
               </form>
             </div>
           </div>
