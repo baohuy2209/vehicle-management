@@ -8,7 +8,7 @@ const Location = () => {
     {
       icon: MapPin,
       title: "District 1 Address",
-      description: "Prime location in HCMC's central business district",
+      description: "Prime location in HCMC&apos;s central business district",
     },
     {
       icon: Train,
@@ -49,7 +49,7 @@ const Location = () => {
               </h2>
               <p className="text-xl text-gray-300 leading-relaxed">
                 Strategically positioned where business, culture, and
-                convenience converge in Vietnam's most dynamic metropolis.
+                convenience converge in Vietnam&apos;s most dynamic metropolis.
               </p>
             </div>
 
@@ -59,7 +59,7 @@ const Location = () => {
                 District 1, offering unparalleled access to government offices,
                 financial institutions, luxury hotels, and premier shopping
                 destinations. Your business benefits from the prestige and
-                connectivity of HCMC's most coveted address.
+                connectivity of HCMC&apos;s most coveted address.
               </p>
 
               {/* Location Features */}

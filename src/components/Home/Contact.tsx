@@ -79,7 +79,7 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-            Let's Start a Conversation
+            Let&apos;s Start a Conversation
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Ready to elevate your business? Our team is here to help you find
@@ -154,7 +154,7 @@ const Contact = () => {
                     Send us a Message
                   </h3>
                   <p className="text-gray-600">
-                    Fill out the form below and we'll get back to you within 24
+                    Fill out the form below and we&apos;ll get back to you within 24
                     hours.
                   </p>
                 </div>

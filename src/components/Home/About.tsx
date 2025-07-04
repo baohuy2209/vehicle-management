@@ -18,7 +18,7 @@ const About = () => {
     {
       icon: Globe,
       title: "Strategic Location",
-      description: "In the heart of HCMC's central business district",
+      description: "In the heart of HCMC&apos;s central business district",
     },
   ];
 
@@ -44,7 +44,7 @@ const About = () => {
               <p className="text-xl text-gray-600 leading-relaxed">
                 Since our establishment, Saigon Centre has been the preferred
                 choice for multinational corporations and growing businesses
-                seeking premium office space in Vietnam's economic capital.
+                seeking premium office space in Vietnam&apos;s economic capital.
               </p>
             </div>
 
@@ -52,9 +52,10 @@ const About = () => {
               <p className="text-lg text-gray-700 leading-relaxed">
                 Our commitment to excellence extends beyond providing workspace.
                 We create environments where businesses thrive, partnerships
+
                 flourish, and innovation drives success. With cutting-edge
-                facilities and personalized service, we support your company's
-                growth in Southeast Asia's most dynamic market.
+                facilities and personalized service, we support your company&apos;s
+                growth in Southeast Asia&apos;s most dynamic market.
               </p>
 
               {/* Highlights */}

@@ -20,30 +20,30 @@ export default function Header() {
             </div>
 
             <div className="hidden sm:flex sm:items-center">
-              <a
+              <Link
                 href="/"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mr-4"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mr-4"
               >
                 Contact
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/registration-parking"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600 mr-4"
               >
                 Parking Registration
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/tracking-status"
                 className="text-gray-800 text-sm font-semibold hover:text-blue-600"
               >
                 Tracking
-              </a>
+              </Link>
             </div>
             {!token ? (
               <div className="hidden sm:flex sm:items-center">

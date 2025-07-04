@@ -1,5 +1,4 @@
 "use client";
-import { login } from "@/lib/services/user.service";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useAuth } from "@/context/AuthContext";

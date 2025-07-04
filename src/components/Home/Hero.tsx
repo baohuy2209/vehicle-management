@@ -52,7 +52,7 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-lg text-blue-50 leading-relaxed max-w-2xl">
-              Experience Vietnam's most prestigious commercial hub, where modern
+              Experience Vietnam&apos;s most prestigious commercial hub, where modern
               architecture meets traditional Vietnamese hospitality. Located in
               District 1, we offer world-class facilities and unmatched
               convenience.
