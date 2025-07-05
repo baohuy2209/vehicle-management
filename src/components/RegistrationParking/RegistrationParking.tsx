@@ -1,11 +1,62 @@
 "use client";
 import React from "react";
 import Footer from "../Footer/Footer";
+import {
+  parkingregistrationdetail,
+  parkingregistrationdetailCreate,
+} from "@/types";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-export default function RegistrationParking() {
-  const [name, setName] = React.useState("");
-  // const [phone, setPhone] = React.useState("");
+import VehicleRegistration from "./VehicleRegistration";
+import { getAllParkingRegistrationDetail } from "@/lib/services/parking-registration-details.service";
+import { createNewParkingRegistration } from "@/lib/services/parking-registration.service";
+type Props = {
+  userId: string | null;
+};
+export default function RegistrationParking({ userId }: Props) {
+  const [fullname, setFullName] = React.useState("");
+  const [phone, setPhone] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [listVehicle, setListVehicle] = React.useState<
+    parkingregistrationdetailCreate[]
+  >([]);
+  React.useEffect(() => {}, [listVehicle]);
+  const handleRegistrationVehicle = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const list_parkingdetails = await getAllParkingRegistrationDetail();
+    const list_pd_id: Array<string> = [];
+    list_parkingdetails.forEach((parkingdetails: parkingregistrationdetail) => {
+      listVehicle.forEach((vehicle: parkingregistrationdetailCreate) => {
+        if (parkingdetails.licenseplate === vehicle.licenseplate) {
+          list_pd_id.push((parkingdetails.id - 1).toString());
+        }
+      });
+    });
+    const newPR = {
+      name: fullname,
+      email,
+      phone,
+      description,
+      parking_registration_details: list_pd_id,
+      parking_checkout: "",
+      customer: userId,
+    };
+    const data = await createNewParkingRegistration(newPR);
+    if (!data) {
+      alert("Register failed");
+      return;
+    }
+    alert("Register successfully");
+  };
   return (
     <>
       <section className=" py-1 bg-blueGray-50">
@@ -17,8 +68,9 @@ export default function RegistrationParking() {
                   Register Parking in Saigon Centre
                 </h6>
                 <button
-                  className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  className="bg-black text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:text-black hover:bg-white hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
+                  onClick={(e) => handleRegistrationVehicle(e)}
                 >
                   Submit
                 </button>
@@ -30,23 +82,21 @@ export default function RegistrationParking() {
                   User Information
                 </h6>
                 <div className="flex flex-wrap">
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="name"
-                      >
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </div>
+                  <div className="w-full px-4 py-2">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="fullname"
+                    >
+                      Fullname
+                    </label>
+                    <input
+                      type="text"
+                      name="fullname"
+                      id="fullname"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      value={fullname}
+                      onChange={(e) => setFullName(e.target.value)}
+                    />
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -72,92 +122,74 @@ export default function RegistrationParking() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        First Name
+                        Phone
                       </label>
                       <input
+                        id="phone"
+                        name="phone"
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-6/12 px-4">
+                  <div className="w-full py-2 px-4">
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
+                        htmlFor="description"
                       >
-                        Last Name
+                        Description
                       </label>
-                      <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
+                      <textarea
+                        id="description"
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="w-full border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
 
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
 
-                <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                  Contact Information
+                <h6 className="flex flex-row items-center justify-between mt-3 mb-6">
+                  <span className="text-gray-400 text-sm font-bold uppercase">
+                    Vehicle Information
+                  </span>
+                  <VehicleRegistration
+                    userId={Number(userId)}
+                    setListVehicle={setListVehicle}
+                  />
                 </h6>
                 <div className="flex flex-wrap">
-                  <div className="w-full lg:w-12/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        City
-                      </label>
-                      <input
-                        type="email"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Country
-                      </label>
-                      <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Postal Code
-                      </label>
-                      <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  </div>
+                  <Table>
+                    <TableCaption>A list of your recent invoices.</TableCaption>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[100px]">STT</TableHead>
+                        <TableHead>License Plate</TableHead>
+                        <TableHead>Vehicle Registration</TableHead>
+                        <TableHead>Position</TableHead>
+                        <TableHead>Floor</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {listVehicle.map((vehicle, index) => (
+                        <TableRow key={index}>
+                          <TableCell className="font-medium">
+                            {vehicle.stt}
+                          </TableCell>
+                          <TableCell>{vehicle.licenseplate}</TableCell>
+                          <TableCell>{vehicle.vehicleregistration}</TableCell>
+                          <TableCell>{vehicle.position}</TableCell>
+                          <TableCell>{vehicle.floor}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
                 </div>
               </form>
             </div>
@@ -173,7 +205,7 @@ export default function RegistrationParking() {
                       className="text-blueGray-500 hover:text-gray-800"
                       target="_blank"
                     >
-                      Notus JS
+                      Next JS
                     </a>{" "}
                     by{" "}
                     <a
@@ -182,7 +214,7 @@ export default function RegistrationParking() {
                       target="_blank"
                     >
                       {" "}
-                      Creative Tim
+                      Nguyen Bao Huy
                     </a>
                     .
                   </div>

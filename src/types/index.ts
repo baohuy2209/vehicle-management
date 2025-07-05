@@ -1,22 +1,4 @@
 import { DateTime } from "next-auth/providers/kakao";
-
-export interface user {
-  customerid: number;
-  username: string;
-  email: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  createAt: DateTime;
-  updateAt: DateTime;
-}
-export interface vehicleinfo {
-  vehicleid: number;
-  customerid: number;
-  vehiclestatus: string;
-  licenseplate: string;
-  vehicleregistration: string;
-}
 export interface parkingregistration {
   prid: string;
   customerid: number;
@@ -25,17 +7,62 @@ export interface parkingregistration {
   phone: string;
   description: string;
 }
+export interface parkingregistrationCreate {
+  name: string;
+  email: string;
+  phone: string;
+  description: string;
+  parking_registration_details: Array<string>;
+  parking_checkout: number | string;
+  customer: string | null;
+}
 export interface parkingregistrationdetail {
-  prdetailid: number;
-  prid: number;
+  id: number;
   stt: number;
-  vehicleid: number;
   licenseplate: string;
   vehicleregistration: string;
   entrytime: DateTime;
-  locationid: number;
-  qrcode: string;
+  floor: string;
+  position: string;
 }
+export interface parkingregistrationdetailCreate {
+  stt: number;
+  licenseplate: string;
+  vehicleregistration: string;
+  entrytime: DateTime;
+  floor: string;
+  position: string;
+}
+export interface customerCreate {
+  username: string;
+  fullname: string;
+  email: string;
+  phone: string;
+  password: string;
+  parking_registrations: Array<parkingregistration>;
+  linked_bank_accounts: Array<linkedbankaccount>;
+  vehicle_infos: Array<vehicleinfo>;
+}
+export interface customer {
+  id: number;
+  username: string;
+  citizenid: string;
+  fullname: string;
+  email: string;
+  phone: string;
+  password: string;
+  parking_registrations: Array<parkingregistration>;
+  linked_bank_accounts: Array<linkedbankaccount>;
+  vehicle_infos: Array<vehicleinfo>;
+}
+export interface vehicleinfo {
+  vehicleid: number;
+  customerid: number;
+  vehiclestatus: string;
+  licenseplate: string;
+  vehicleregistration: string;
+}
+
 export interface location {
   locationid: number;
   position: string;

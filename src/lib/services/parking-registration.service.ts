@@ -1,4 +1,4 @@
-import { parkingregistration } from "@/types";
+import { parkingregistration, parkingregistrationCreate } from "@/types";
 import httpCommon from "../http-common";
 export async function getAllParkingRegistration() {
   const base_url =
@@ -8,12 +8,16 @@ export async function getAllParkingRegistration() {
   return data;
 }
 export async function createNewParkingRegistration(
-  parkingregistration: parkingregistration
+  parkingregistration: parkingregistrationCreate
 ) {
+  console.log(parkingregistration);
   const base_url =
     process.env.NEXT_PUBLIC_BASE_URL_BACKEND + "/parking-registrations";
-  const response = await httpCommon.post(base_url, parkingregistration);
+  const response = await httpCommon.post(base_url, {
+    data: parkingregistration,
+  });
   const data = response.data.data;
+  console.log(data);
   return data;
 }
 export async function getOneParkingRegistration(prId: string) {

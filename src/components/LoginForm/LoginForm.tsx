@@ -19,22 +19,26 @@ export default function LoginForm() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:1337/api/auth/local", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          identifier: username, // email hoặc username
-          password,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/auth/local`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            identifier: username, // email hoặc username
+            password,
+          }),
+        }
+      );
 
       const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data.error?.message || "Login failed");
       }
-
       setToken(data.jwt); // JWT token để lưu vào localStorage, cookie, hoặc context
+      localStorage.setItem("jwt", data.jwt);
+      localStorage.setItem("userId", data.user.id);
       router.push("/");
     } catch (err) {
       setError((err as Error).message);

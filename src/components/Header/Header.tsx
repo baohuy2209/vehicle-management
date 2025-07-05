@@ -3,8 +3,14 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 export default function Header() {
   const { token } = useAuth();
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    router.push("/auth-page/sign-in"); // Điều hướng về trang đăng nhập
+  };
   return (
     <div className="bg-gray-100 font-sans w-full m-0">
       <div className="bg-white shadow">
@@ -54,19 +60,19 @@ export default function Header() {
                   Sign in
                 </Link>
                 <Link
-                  href="/auth-page/sign-uo"
+                  href="/auth-page/sign-up"
                   className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
                 >
                   Sign up
                 </Link>
               </div>
             ) : (
-              <Link
-                href="#"
+              <button
+                onClick={handleLogout}
                 className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
               >
                 Logout
-              </Link>
+              </button>
             )}
             {/* Responsive */}
             {!token ? (
@@ -85,12 +91,12 @@ export default function Header() {
                 </Link>
               </div>
             ) : (
-              <Link
-                href="#"
+              <button
+                onClick={handleLogout}
                 className="lg:hidden text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-blue-600 hover:border-blue-600"
               >
                 Logout
-              </Link>
+              </button>
             )}
 
             <div className="sm:hidden cursor-pointer">

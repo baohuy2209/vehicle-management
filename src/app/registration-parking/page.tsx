@@ -1,4 +1,5 @@
-import RegistrationParking from "@/components/RegistrationParking/RegistrationParking";
+import RegistrationClientWrapper from "@/components/RegistrationParking/RegistrationClientWrapper";
+
 export default function Registration() {
-  return <RegistrationParking />;
+  return <RegistrationClientWrapper />;
 }
