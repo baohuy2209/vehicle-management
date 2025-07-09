@@ -10,7 +10,6 @@ export async function getAllParkingRegistration() {
 export async function createNewParkingRegistration(
   parkingregistration: parkingregistrationCreate
 ) {
-  console.log(parkingregistration);
   const base_url =
     process.env.NEXT_PUBLIC_BASE_URL_BACKEND + "/parking-registrations";
   const response = await httpCommon.post(base_url, {
