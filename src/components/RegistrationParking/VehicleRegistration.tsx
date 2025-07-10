@@ -51,6 +51,7 @@ function VehicleRegistration({ userId, setListVehicle }: Props) {
   const [listPosition, setListPosition] = React.useState<location[]>([]);
   const [loading, setLoading] = React.useState(true);
   const getCurrentUser = async () => {
+    console.log(userId);
     const user = await getCustomerByUsername(userId);
     setCurrentUser(user);
     setLoading(false);

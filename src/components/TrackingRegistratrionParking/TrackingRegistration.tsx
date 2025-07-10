@@ -1,11 +1,15 @@
 "use client";
+import httpCommon from "@/lib/http-common";
 import { getCustomerByUsername } from "@/lib/services/user.service";
+import { customer, parkingregistration } from "@/types";
 import React from "react";
 type Props = {
   userId: string | null;
 };
-export default function TrackingRegistration(userId: Props) {
-  const [currentUser, setCurrentUser] = React.useState();
+export default function TrackingRegistration({ userId }: Props) {
+  const [currentUser, setCurrentUser] = React.useState<customer>();
+  const [lastParkingRegistrations, setLastParkingRegistrations] =
+    React.useState<parkingregistration>();
   React.useEffect(() => {
     const getCurrentCustomer = async () => {
       const customer = await getCustomerByUsername(Number(userId));
@@ -13,6 +17,17 @@ export default function TrackingRegistration(userId: Props) {
     };
     getCurrentCustomer();
   }, [userId]);
+  React.useEffect(() => {
+    const getParkingRegistrations = async () => {
+      const res = await httpCommon.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/customers/${currentUser?.documentId}?populate=parking_registrations
+        `
+      );
+      const lastPR = res.data.data.parking_registrations.at(-1);
+      setLastParkingRegistrations(lastPR);
+    };
+    getParkingRegistrations();
+  }, []);
   return (
     <>
       <header className="bg-white shadow-sm border-b">
@@ -65,9 +80,7 @@ export default function TrackingRegistration(userId: Props) {
                     <p className="text-sm text-blue-600 font-medium">
                       Parking Registration ID
                     </p>
-                    <p className="text-2xl font-bold text-blue-900">
-                      {currentUser}
-                    </p>
+                    <p className="text-2xl font-bold text-blue-900">Hello</p>
                   </div>
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                     <svg

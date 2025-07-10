@@ -1,11 +1,14 @@
 import { DateTime } from "next-auth/providers/kakao";
 export interface parkingregistration {
   prid: string;
-  customerid: number;
+  documentId: string;
   name: string;
   email: string;
   phone: string;
   description: string;
+  parking_registration_details: Array<number> | [];
+  parking_checkout: number | null;
+  customer: number | null;
 }
 export interface parkingregistrationCreate {
   name: string;
@@ -45,7 +48,7 @@ export interface customerCreate {
 }
 export interface customer {
   id: number;
-  documentId: string; 
+  documentId: string;
   username: string;
   citizenid: string;
   fullname: string;
