@@ -12,9 +12,9 @@ export interface parkingregistrationCreate {
   email: string;
   phone: string;
   description: string;
-  parking_registration_details: Array<string>;
-  parking_checkout: number | string;
-  customer: string | null;
+  parking_registration_details: Array<number> | [];
+  parking_checkout: number | null;
+  customer: number | null;
 }
 export interface parkingregistrationdetail {
   id: number;
@@ -45,6 +45,7 @@ export interface customerCreate {
 }
 export interface customer {
   id: number;
+  documentId: string; 
   username: string;
   citizenid: string;
   fullname: string;

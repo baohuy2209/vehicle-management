@@ -18,6 +18,7 @@ import {
 import VehicleRegistration from "./VehicleRegistration";
 import { getAllParkingRegistrationDetail } from "@/lib/services/parking-registration-details.service";
 import { createNewParkingRegistration } from "@/lib/services/parking-registration.service";
+import { getCustomerByUsername } from "@/lib/services/user.service";
 type Props = {
   userId: string | null;
 };
@@ -33,29 +34,31 @@ export default function RegistrationParking({ userId }: Props) {
   const handleRegistrationVehicle = async (e: React.FormEvent) => {
     e.preventDefault();
     const list_parkingdetails = await getAllParkingRegistrationDetail();
-    const list_pd_id: Array<string> = [];
+    const list_pd_id: Array<number> = [];
     list_parkingdetails.forEach((parkingdetails: parkingregistrationdetail) => {
       listVehicle.forEach((vehicle: parkingregistrationdetailCreate) => {
         if (parkingdetails.licenseplate === vehicle.licenseplate) {
-          list_pd_id.push((parkingdetails.id - 1).toString());
+          list_pd_id.push(parkingdetails.id - 1);
         }
       });
     });
+    const currentCustomer = await getCustomerByUsername(Number(userId));
     const newPR = {
       name: fullname,
       email,
       phone,
       description,
       parking_registration_details: list_pd_id,
-      parking_checkout: "",
-      customer: userId,
+      parking_checkout: null,
+      customer: currentCustomer.id,
     };
+    console.log(newPR);
     const data = await createNewParkingRegistration(newPR);
     if (!data) {
       alert("Register failed");
       return;
     }
-    alert("Register successfully");
+    alert("Register success");
   };
   return (
     <>

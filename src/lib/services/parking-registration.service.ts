@@ -1,5 +1,6 @@
 import { parkingregistration, parkingregistrationCreate } from "@/types";
 import httpCommon from "../http-common";
+import { AxiosError } from "axios";
 export async function getAllParkingRegistration() {
   const base_url =
     process.env.NEXT_PUBLIC_BASE_URL_BACKEND + "/parking-registrations";
@@ -10,14 +11,20 @@ export async function getAllParkingRegistration() {
 export async function createNewParkingRegistration(
   parkingregistration: parkingregistrationCreate
 ) {
-  const base_url =
-    process.env.NEXT_PUBLIC_BASE_URL_BACKEND + "/parking-registrations";
-  const response = await httpCommon.post(base_url, {
-    data: parkingregistration,
-  });
-  const data = response.data.data;
-  console.log(data);
-  return data;
+  try {
+    const base_url =
+      process.env.NEXT_PUBLIC_BASE_URL_BACKEND + "/parking-registrations";
+    const response = await httpCommon.post(base_url, {
+      data: parkingregistration,
+    });
+    const data = response.data.data;
+    return data;
+  } catch (err) {
+    console.log(
+      (err as Error).message ||
+        (err as AxiosError<any, unknown>)?.response?.data.error.message
+    );
+  }
 }
 export async function getOneParkingRegistration(prId: string) {
   const base_url =
